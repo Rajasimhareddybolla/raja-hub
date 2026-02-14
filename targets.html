@@ -16,6 +16,7 @@
         .target-card.high { border-left-color: #00f2ff; }
         .target-card.medium { border-left-color: #00ff95; }
         .target-card.academic { border-left-color: #818cf8; }
+        .target-card.critical { border-left-color: #ff2d55; }
     </style>
 </head>
 <body class="p-8 lg:p-20">
@@ -28,6 +29,18 @@
 
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
         
+        <!-- NEW: Final Year Project -->
+        <div class="glass-panel p-6 rounded-2xl target-card critical">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">Academic // Final Year Project</span>
+                    <h2 class="text-2xl font-bold mt-1">Project Deadline Management</h2>
+                </div>
+                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">URGENT</span>
+            </div>
+            <p class="text-sm text-gray-400">Review all requirements and set immediate internal milestones. This is non-negotiable.</p>
+        </div>
+
         <!-- Startup: Mioo -->
         <div class="glass-panel p-6 rounded-2xl target-card high">
             <div class="flex justify-between items-start mb-4">
@@ -91,11 +104,6 @@
                 <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // DBMS</span>
                 <h2 class="text-xl font-bold mt-1">DBMS Completion</h2>
                 <p class="text-sm text-gray-400 mt-2">Finalize the Database Management Systems syllabus.</p>
-            </div>
-            <div class="glass-panel p-6 rounded-2xl target-card high">
-                <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">Academic // Final Year Project</span>
-                <h2 class="text-xl font-bold mt-1">Project Deadline Management</h2>
-                <p class="text-sm text-gray-400 mt-2">Review deadline requirements and establish the execution roadmap.</p>
             </div>
         </div>
 
