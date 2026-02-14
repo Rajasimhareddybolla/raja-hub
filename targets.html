@@ -17,6 +17,7 @@
         .target-card.medium { border-left-color: #00ff95; }
         .target-card.academic { border-left-color: #818cf8; }
         .target-card.critical { border-left-color: #ff2d55; }
+        .target-card.completed { border-left-color: #00ff95; opacity: 0.8; }
     </style>
 </head>
 <body class="p-8 lg:p-20">
@@ -29,32 +30,43 @@
 
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
         
-        <!-- NEW: Final Year Project -->
-        <div class="glass-panel p-6 rounded-2xl target-card critical">
+        <!-- Startup: Mioo (JSON Fixer DONE) -->
+        <div class="glass-panel p-6 rounded-2xl target-card completed">
             <div class="flex justify-between items-start mb-4">
                 <div>
-                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">Academic // Final Year Project</span>
-                    <h2 class="text-2xl font-bold mt-1">Project Deadline Management</h2>
+                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Startup // Mioo</span>
+                    <h2 class="text-2xl font-bold mt-1">JSON Schema Fixer & Audit</h2>
                 </div>
-                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">URGENT</span>
+                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">COMPLETED</span>
             </div>
-            <p class="text-sm text-gray-400">Review all requirements and set immediate internal milestones. This is non-negotiable.</p>
+            <p class="text-sm text-gray-400">Integrated automatic syntax/type fixing and detailed audit logging for LLM responses. Deployed Feb 13.</p>
         </div>
 
-        <!-- Startup: Mioo -->
+        <!-- Startup: Mioo (Translation PENDING) -->
         <div class="glass-panel p-6 rounded-2xl target-card high">
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">Startup // Mioo</span>
-                    <h2 class="text-2xl font-bold mt-1">Core Logic & Reliability</h2>
+                    <h2 class="text-2xl font-bold mt-1">Translation & Retry Logic</h2>
                 </div>
                 <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">CRITICAL</span>
             </div>
             <ul class="space-y-2 text-gray-400 text-sm">
                 <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> Translation layer integration</li>
-                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> JSON Schema fixer completion</li>
-                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> Error handling & Retry logic</li>
+                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> Error handling & Retry strategy</li>
             </ul>
+        </div>
+
+        <!-- Architecture: AI for Bharath (DONE) -->
+        <div class="glass-panel p-6 rounded-2xl target-card completed">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Architecture // AI for Bharath</span>
+                    <h2 class="text-2xl font-bold mt-1">System Design</h2>
+                </div>
+                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">COMPLETED</span>
+            </div>
+            <p class="text-sm text-gray-400">Initial architecture for national AI infrastructure finalized today.</p>
         </div>
 
         <!-- Project: Sophia -->
@@ -67,30 +79,6 @@
                 <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">HIGH</span>
             </div>
             <p class="text-sm text-gray-400">Complete the deployment pipeline and finalize the aesthetic design for the Sophia platform.</p>
-        </div>
-
-        <!-- Architecture: AI for Bharath -->
-        <div class="glass-panel p-6 rounded-2xl target-card medium">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Architecture // AI for Bharath</span>
-                    <h2 class="text-2xl font-bold mt-1">System Design</h2>
-                </div>
-                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">COMPLETED</span>
-            </div>
-            <p class="text-sm text-gray-400">Drafted the initial architecture for the "AI for Bharath" national-scale infrastructure. System design phase finalized.</p>
-        </div>
-
-        <!-- Technical: DSA -->
-        <div class="glass-panel p-6 rounded-2xl target-card medium">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Technical // DSA</span>
-                    <h2 class="text-2xl font-bold mt-1">Dynamic Programming</h2>
-                </div>
-                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">DAILY</span>
-            </div>
-            <p class="text-sm text-gray-400">Solve 2 high-level DSA questions focusing on Dynamic Programming patterns.</p>
         </div>
 
         <!-- Academic -->
