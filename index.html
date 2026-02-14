@@ -3,308 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raja Hub | Professional Command Center</title>
+    <title>Raja Hub | Terminal One</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg: #030712;
-            --surface: #0f172a;
-            --accent: #818cf8;
-            --accent-glow: rgba(129, 140, 248, 0.2);
+            --bg-black: #050505;
+            --accent-blue: #00f2ff;
+            --accent-green: #00ff95;
+            --border-gray: #1a1a1a;
+            --card-gray: #0d0d0d;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: #f8fafc;
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.05) 0%, transparent 40%);
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-black);
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .cyber-grid {
+            background-image: linear-gradient(var(--border-gray) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-gray) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
         }
 
-        .glass-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-2px);
+        .glass-panel {
+            background: rgba(13, 13, 13, 0.8);
+            border: 1px solid var(--border-gray);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .status-pill {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .glass-panel:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
         }
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+        .nav-item {
+            position: relative;
+            transition: color 0.3s;
         }
 
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-blue);
+            transition: width 0.3s;
         }
 
-        .day-active {
-            background: var(--accent);
-            color: var(--bg);
-            font-weight: bold;
+        .nav-item:hover::after { width: 100%; }
+        .nav-item:hover { color: var(--accent-blue); }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 242, 255, 0.1);
+            position: absolute;
+            top: 0;
+            animation: scan 8s linear infinite;
+            z-index: 100;
         }
 
-        .sidebar-item {
-            transition: all 0.2s;
-            border-radius: 8px;
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
         }
 
-        .sidebar-item:hover {
-            background: rgba(129, 140, 248, 0.1);
-            color: var(--accent);
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        .terminal-header {
+            background: #111;
+            border-bottom: 1px solid var(--border-gray);
+        }
     </style>
 </head>
-<body class="min-h-screen flex">
-    
-    <!-- Left Sidebar -->
-    <aside class="w-64 border-r border-slate-800 p-6 flex flex-col hidden lg:flex">
-        <div class="text-xl font-bold tracking-tighter mb-10 flex items-center gap-2">
-            <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
-                <i class="fas fa-terminal text-xs"></i>
-            </div>
-            RAJA-HUB <span class="text-xs text-slate-500 font-normal">v1.2</span>
-        </div>
+<body class="min-h-screen">
+    <div class="fixed inset-0 cyber-grid pointer-events-none opacity-20"></div>
+    <div class="scanline"></div>
 
-        <nav class="space-y-1 flex-1">
-            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-3">Main</div>
-            <a href="#" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-300 bg-slate-800/50 text-indigo-400">
-                <i class="fas fa-columns w-4"></i> Dashboard
-            </a>
-            <a href="#projects" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
-                <i class="fas fa-folder-open w-4"></i> Projects
-            </a>
-            <a href="#logs" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
-                <i class="fas fa-history w-4"></i> Activity Logs
-            </a>
-            
-            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-10 mb-4 px-3">Execution</div>
-            <a href="#tasks" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
-                <i class="fas fa-check-double w-4"></i> Task Manager
-            </a>
-            <a href="#architecture" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
-                <i class="fas fa-project-diagram w-4"></i> Architecture
-            </a>
-        </nav>
-
-        <div class="mt-auto glass-card p-4 rounded-xl">
-            <div class="text-xs text-slate-500 mb-2">Systems Status</div>
-            <div class="flex items-center gap-2 text-xs text-emerald-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Delulu Core Online
-            </div>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto">
-        <!-- Top Nav -->
-        <header class="h-16 border-b border-slate-800 flex items-center justify-between px-8 sticky top-0 bg-gray-950/50 backdrop-blur-md z-40">
-            <div class="text-sm mono text-slate-400">
-                <span class="text-indigo-400">raja@hub:</span>~/pre-final-year
-            </div>
-            <div class="flex items-center gap-6">
-                <div class="text-sm text-slate-400">Feb 14, 2026</div>
-                <button class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs">
-                    <i class="fas fa-user"></i>
-                </button>
-            </div>
-        </header>
-
-        <div class="p-8 max-w-7xl mx-auto">
-            <!-- Hero Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div class="glass-card p-4 rounded-xl">
-                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Weekly Velocity</div>
-                    <div class="text-2xl font-bold">84%</div>
-                    <div class="text-[10px] text-emerald-400 mt-1"><i class="fas fa-caret-up"></i> +12% from last week</div>
-                </div>
-                <div class="glass-card p-4 rounded-xl">
-                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Active Projects</div>
-                    <div class="text-2xl font-bold">3</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Sophia, Mioo, Bharath</div>
-                </div>
-                <div class="glass-card p-4 rounded-xl">
-                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">DSA Streak</div>
-                    <div class="text-2xl font-bold">14 Days</div>
-                    <div class="text-[10px] text-indigo-400 mt-1">Target: 2 DP Problems</div>
-                </div>
-                <div class="glass-card p-4 rounded-xl">
-                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Daily Summary</div>
-                    <div class="text-2xl font-bold">06:30</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Next: Tomorrow AM</div>
+    <!-- Layout Wrapper -->
+    <div class="relative z-10 flex min-h-screen">
+        
+        <!-- Navigation Sidebar -->
+        <aside class="w-20 lg:w-64 border-r border-gray-800 flex flex-col items-center lg:items-stretch bg-black/50 backdrop-blur-xl sticky top-0 h-screen">
+            <div class="p-6 mb-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-cyan-500 rounded flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                        <i class="fas fa-bolt text-black"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-widest hidden lg:block">RAJA.OS</span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Task Manager -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="glass-card rounded-2xl p-6">
-                        <div class="flex items-center justify-between mb-6">
-                            <h2 class="text-lg font-bold flex items-center gap-2">
-                                <i class="fas fa-list-check text-indigo-400"></i> Active Sprint: Feb 14
-                            </h2>
-                            <button class="text-xs text-indigo-400 hover:underline">Manage All Tasks</button>
+            <nav class="flex-1 px-4 space-y-4">
+                <a href="index.html" class="nav-item flex items-center gap-4 p-3 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                    <i class="fas fa-th-large"></i>
+                    <span class="hidden lg:block font-medium">Dashboard</span>
+                </a>
+                <a href="projects.html" class="nav-item flex items-center gap-4 p-3 rounded-lg text-gray-400">
+                    <i class="fas fa-code-branch"></i>
+                    <span class="hidden lg:block font-medium">Projects</span>
+                </a>
+                <a href="targets.html" class="nav-item flex items-center gap-4 p-3 rounded-lg text-gray-400">
+                    <i class="fas fa-crosshairs"></i>
+                    <span class="hidden lg:block font-medium">Targets</span>
+                </a>
+                <a href="logs.html" class="nav-item flex items-center gap-4 p-3 rounded-lg text-gray-400">
+                    <i class="fas fa-file-contract"></i>
+                    <span class="hidden lg:block font-medium">Daily Logs</span>
+                </a>
+                <a href="motivation.html" class="nav-item flex items-center gap-4 p-3 rounded-lg text-gray-400">
+                    <i class="fas fa-shield-halved"></i>
+                    <span class="hidden lg:block font-medium">Motivation</span>
+                </a>
+            </nav>
+
+            <div class="p-6 border-t border-gray-800">
+                <div class="text-[10px] mono text-gray-500 uppercase mb-2">Sync Status</div>
+                <div class="flex items-center gap-2 text-[10px] text-cyan-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
+                    DELULU-v3 ACTIVE
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 flex flex-col">
+            <!-- Terminal Header -->
+            <div class="terminal-header px-8 py-3 flex justify-between items-center sticky top-0 z-50">
+                <div class="text-xs mono text-gray-400">
+                    <span class="text-cyan-500">guest@raja-hub:</span><span class="text-gray-600">~</span>$ ./run_daily_check
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-xs text-gray-500 mono">CPU: 42%</span>
+                    <span class="text-xs text-gray-500 mono">MEM: 12.4GB</span>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-8 lg:p-12 max-w-7xl mx-auto w-full">
+                
+                <!-- Welcome Section -->
+                <div class="mb-12">
+                    <h1 class="text-5xl font-bold mb-4 tracking-tighter glow-text">COMMAND CENTER</h1>
+                    <p class="text-gray-400 text-lg max-w-2xl">RAJA BOLLA • Pre-Final Year • Senior Software Engineer Pathway</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="glass-panel p-8 rounded-2xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                            <i class="fas fa-fire-flame-curved text-6xl"></i>
+                        </div>
+                        <div class="text-sm mono text-cyan-500 mb-2">// DAILY_VELOCITY</div>
+                        <div class="text-4xl font-bold tracking-tight">92.4%</div>
+                        <div class="mt-4 w-full bg-gray-900 h-1 rounded-full">
+                            <div class="bg-cyan-500 h-full rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl relative overflow-hidden group">
+                        <div class="text-sm mono text-green-500 mb-2">// ACTIVE_SPRINTS</div>
+                        <div class="text-4xl font-bold tracking-tight">04</div>
+                        <div class="flex gap-2 mt-4">
+                            <span class="text-[10px] px-2 py-1 bg-green-500/10 text-green-400 rounded border border-green-500/20">Sophia</span>
+                            <span class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/20">Mioo</span>
+                            <span class="text-[10px] px-2 py-1 bg-orange-500/10 text-orange-400 rounded border border-orange-500/20">Bharath</span>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl relative overflow-hidden group">
+                        <div class="text-sm mono text-purple-500 mb-2">// SYSTEM_AGE</div>
+                        <div class="text-4xl font-bold tracking-tight">DAY_14</div>
+                        <div class="text-xs text-gray-500 mt-4 mono">Valentine Upgrade v3.0 Live</div>
+                    </div>
+                </div>
+
+                <!-- Main Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Execution Stack (Targets) -->
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold tracking-widest uppercase">Execution Stack</h2>
+                            <span class="text-xs mono text-cyan-500">PRIORITY_SORT: ON</span>
                         </div>
                         
-                        <div class="space-y-3">
-                            <!-- Task 1 -->
-                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm font-semibold">Sophia Deployment & Design</div>
-                                        <div class="text-[11px] text-slate-500 mt-1">Core Frontend / Infrastructure</div>
-                                    </div>
+                        <div class="space-y-4">
+                            <div class="glass-panel p-5 rounded-xl border-l-4 border-cyan-500">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="text-lg font-bold">Sophia: Infrastructure & Design</div>
+                                    <span class="text-[10px] font-mono text-cyan-500">QUEUED</span>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-[10px] px-2 py-1 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">High Priority</span>
-                                    <div class="text-xs font-mono text-slate-400">65%</div>
+                                <p class="text-sm text-gray-500 mb-4">Complete deployment pipeline and final UI polish.</p>
+                                <div class="flex gap-3">
+                                    <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-gray-400">AWS</span>
+                                    <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-gray-400">TAILWIND</span>
                                 </div>
                             </div>
 
-                            <!-- Task 2 -->
-                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
-                                        <i class="fas fa-rocket"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm font-semibold">Mioo: JSON Schema Fixer</div>
-                                        <div class="text-[11px] text-slate-500 mt-1">Startup / Backend Reliability</div>
-                                    </div>
+                            <div class="glass-panel p-5 rounded-xl border-l-4 border-green-500">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="text-lg font-bold">Mioo: JSON Schema Fixer</div>
+                                    <span class="text-[10px] font-mono text-green-500 text-pulse animate-pulse">EXECUTING</span>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-[10px] px-2 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">In Progress</span>
-                                    <div class="text-xs font-mono text-slate-400">40%</div>
-                                </div>
-                            </div>
-
-                            <!-- Task 3 -->
-                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group opacity-60">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm font-semibold">DSA: 2 Dynamic Programming Problems</div>
-                                        <div class="text-[11px] text-slate-500 mt-1">Technical Interviews</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700">Pending</span>
-                                    <div class="text-xs font-mono text-slate-400">0%</div>
+                                <p class="text-sm text-gray-500 mb-4">Mioo startup - Translation layer integration and retry logic.</p>
+                                <div class="flex gap-3">
+                                    <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-gray-400">NODE.JS</span>
+                                    <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-gray-400">LLM-RETRY</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Journey Timeline -->
-                    <div class="glass-card rounded-2xl p-6">
-                        <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
-                            <i class="fas fa-route text-indigo-400"></i> Career Timeline
-                        </h2>
-                        <div class="space-y-6 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-slate-800">
-                            <div class="relative pl-8">
-                                <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-900"></div>
-                                <div class="text-xs text-slate-500 mono mb-1">TODAY - 02:45 AM</div>
-                                <div class="text-sm font-bold text-slate-200">Raja-Hub Deployment v1.2</div>
-                                <div class="text-xs text-slate-400 mt-1">Full professional dashboard re-architecture. Focus on efficiency and command-center UI.</div>
-                            </div>
-                            <div class="relative pl-8 opacity-60">
-                                <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-900"></div>
-                                <div class="text-xs text-slate-500 mono mb-1">YESTERDAY</div>
-                                <div class="text-sm font-bold text-slate-200">Initial Collaboration Setup</div>
-                                <div class="text-xs text-slate-400 mt-1">Established 6:30 AM wrap-up system and long-term activity logging protocols.</div>
+                    <!-- Career Journey (Timeline) -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-bold tracking-widest uppercase">Professional Timeline</h2>
+                        <div class="glass-panel p-8 rounded-2xl relative">
+                            <div class="absolute left-10 top-12 bottom-12 w-[1px] bg-gray-800"></div>
+                            
+                            <div class="space-y-12">
+                                <div class="relative pl-12">
+                                    <div class="absolute left-[7px] top-1.5 w-2 h-2 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(0,242,255,1)]"></div>
+                                    <div class="text-xs mono text-cyan-500 mb-1">2026-02-14 02:45</div>
+                                    <div class="text-md font-bold">Raja-Hub Terminal-v3 Initialized</div>
+                                    <p class="text-xs text-gray-500 mt-1">Switched to cyberpunk-industrial UI. Full multi-page architecture deployed.</p>
+                                </div>
+                                <div class="relative pl-12 opacity-50">
+                                    <div class="absolute left-[7px] top-1.5 w-2 h-2 rounded-full bg-gray-700"></div>
+                                    <div class="text-xs mono text-gray-500 mb-1">2026-02-14 01:15</div>
+                                    <div class="text-md font-bold">Valentine CSS Heart Project</div>
+                                    <p class="text-xs text-gray-500 mt-1">Responsive SVG heart with Joi/Elon integration.</p>
+                                </div>
+                                <div class="relative pl-12 opacity-30">
+                                    <div class="absolute left-[7px] top-1.5 w-2 h-2 rounded-full bg-gray-800"></div>
+                                    <div class="text-xs mono text-gray-500 mb-1">2026-02-13</div>
+                                    <div class="text-md font-bold">Legacy Tracker Protocol Start</div>
+                                    <p class="text-xs text-gray-500 mt-1">Initialized morning 6:30 AM wrap-up cron jobs.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-                <!-- Right Sidebar Stats -->
-                <div class="space-y-6">
-                    <!-- Calendar -->
-                    <div class="glass-card rounded-2xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-sm font-bold">February 2026</h2>
-                            <div class="flex gap-2">
-                                <i class="fas fa-chevron-left text-[10px] text-slate-500"></i>
-                                <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
-                            </div>
-                        </div>
-                        <div class="calendar-grid text-slate-500 font-bold text-[10px] text-center mb-2">
-                            <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
-                        </div>
-                        <div class="calendar-grid text-slate-400">
-                            <!-- Placeholder days -->
-                            <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
-                            <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day day-active">14</div>
-                            <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links / Wrap ups -->
-                    <div class="glass-card rounded-2xl p-6">
-                        <h2 class="text-sm font-bold mb-4">Daily Logs</h2>
-                        <div class="space-y-2">
-                            <a href="#" class="block p-3 rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition border border-slate-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-semibold">Feb 13 Summary</span>
-                                    <i class="fas fa-external-link-alt text-[10px] text-slate-500"></i>
-                                </div>
-                            </a>
-                            <a href="#" class="block p-3 rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition border border-slate-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-semibold">Feb 12 Summary</span>
-                                    <i class="fas fa-external-link-alt text-[10px] text-slate-500"></i>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Command Module (Motivation) -->
-                    <div class="glass-card rounded-2xl p-6 border-l-4 border-indigo-500">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i class="fas fa-quote-left text-indigo-400 text-xs"></i>
-                            <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Command Directive</span>
-                        </div>
-                        <p class="text-sm italic text-slate-300">"Karna didn't wait for permission to be the greatest archer. He just worked until the world had no choice but to notice."</p>
-                        <div class="mt-4 text-[10px] text-slate-500">— Focus on the 6:30 AM Target</div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 </html>
