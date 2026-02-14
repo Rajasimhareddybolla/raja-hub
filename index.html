@@ -3,130 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raja Hub | Legacy Tracker</title>
+    <title>Raja Hub | Professional Command Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .gradient-text { background: linear-gradient(90deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .nav-link.active { border-bottom: 2px solid #818cf8; color: #818cf8; }
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #818cf8;
+            --accent-glow: rgba(129, 140, 248, 0.2);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: #f8fafc;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.05) 0%, transparent 40%);
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .status-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .day-active {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: bold;
+        }
+
+        .sidebar-item {
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 glass px-6 py-4 flex justify-between items-center mb-8">
-        <div class="text-2xl font-bold gradient-text">RAJA HUB 💜</div>
-        <div class="flex gap-8">
-            <a href="#" class="nav-link active font-medium">Dashboard</a>
-            <a href="#targets" class="nav-link hover:text-indigo-400 transition">Targets</a>
-            <a href="#motivation" class="nav-link hover:text-indigo-400 transition">Motivation Wall</a>
-            <a href="#log" class="nav-link hover:text-indigo-400 transition">Legacy Log</a>
+<body class="min-h-screen flex">
+    
+    <!-- Left Sidebar -->
+    <aside class="w-64 border-r border-slate-800 p-6 flex flex-col hidden lg:flex">
+        <div class="text-xl font-bold tracking-tighter mb-10 flex items-center gap-2">
+            <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-terminal text-xs"></i>
+            </div>
+            RAJA-HUB <span class="text-xs text-slate-500 font-normal">v1.2</span>
         </div>
-    </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pb-20">
-        <!-- Header -->
-        <header class="mb-12">
-            <h1 class="text-4xl font-bold mb-2">Welcome Back, <span class="gradient-text">Raja</span></h1>
-            <p class="text-slate-400">Your pre-final year journey, documented. Let's make today count.</p>
+        <nav class="space-y-1 flex-1">
+            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-3">Main</div>
+            <a href="#" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-300 bg-slate-800/50 text-indigo-400">
+                <i class="fas fa-columns w-4"></i> Dashboard
+            </a>
+            <a href="#projects" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
+                <i class="fas fa-folder-open w-4"></i> Projects
+            </a>
+            <a href="#logs" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
+                <i class="fas fa-history w-4"></i> Activity Logs
+            </a>
+            
+            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-10 mb-4 px-3">Execution</div>
+            <a href="#tasks" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
+                <i class="fas fa-check-double w-4"></i> Task Manager
+            </a>
+            <a href="#architecture" class="sidebar-item px-3 py-2 flex items-center gap-3 text-slate-400 hover:text-slate-100">
+                <i class="fas fa-project-diagram w-4"></i> Architecture
+            </a>
+        </nav>
+
+        <div class="mt-auto glass-card p-4 rounded-xl">
+            <div class="text-xs text-slate-500 mb-2">Systems Status</div>
+            <div class="flex items-center gap-2 text-xs text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Delulu Core Online
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+        <!-- Top Nav -->
+        <header class="h-16 border-b border-slate-800 flex items-center justify-between px-8 sticky top-0 bg-gray-950/50 backdrop-blur-md z-40">
+            <div class="text-sm mono text-slate-400">
+                <span class="text-indigo-400">raja@hub:</span>~/pre-final-year
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-sm text-slate-400">Feb 14, 2026</div>
+                <button class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
         </header>
 
-        <!-- Motivation Wall Section -->
-        <section id="motivation" class="mb-16">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-semibold flex items-center gap-3">
-                    <i class="fas fa-fire text-orange-500"></i> Motivation Wall
-                </h2>
-                <span class="text-xs uppercase tracking-widest text-slate-500">The Warrior's Mindset</span>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Karna/Mahabharatam -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-amber-500">
-                    <div class="text-xs text-amber-500 font-bold mb-2 uppercase">Mahabharatam | Karna</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"Fate may choose my birth, but I choose my deeds. To be a warrior is to fight even when the gods are against you."</p>
-                    <div class="text-sm text-slate-500">— The Unconquerable Spirit</div>
+        <div class="p-8 max-w-7xl mx-auto">
+            <!-- Hero Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Weekly Velocity</div>
+                    <div class="text-2xl font-bold">84%</div>
+                    <div class="text-[10px] text-emerald-400 mt-1"><i class="fas fa-caret-up"></i> +12% from last week</div>
                 </div>
-
-                <!-- Elon Musk -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-indigo-500">
-                    <div class="text-xs text-indigo-500 font-bold mb-2 uppercase">Real Life | Elon Musk</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"When something is important enough, you do it even if the odds are not in your favor."</p>
-                    <div class="text-sm text-slate-500">— Persistence & Scale</div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Active Projects</div>
+                    <div class="text-2xl font-bold">3</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Sophia, Mioo, Bharath</div>
                 </div>
-
-                <!-- APJ Abdul Kalam -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-emerald-500">
-                    <div class="text-xs text-emerald-500 font-bold mb-2 uppercase">Scholar | Dr. Kalam</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"Dream is not that which you see while sleeping, it is something that does not let you sleep."</p>
-                    <div class="text-sm text-slate-500">— Vision & Discipline</div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">DSA Streak</div>
+                    <div class="text-2xl font-bold">14 Days</div>
+                    <div class="text-[10px] text-indigo-400 mt-1">Target: 2 DP Problems</div>
                 </div>
-
-                <!-- Delulu/My Words -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-purple-500 bg-gradient-to-br from-purple-900/20 to-transparent">
-                    <div class="text-xs text-purple-400 font-bold mb-2 uppercase">Your Companion | Delulu 💜</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"Senior devs aren't born at Google; they're built in late-night sessions and failed deployments. You have the code, Raja. Now show them the execution."</p>
-                    <div class="text-sm text-slate-500">— Believe in yourself</div>
-                </div>
-
-                <!-- Bhagavad Gita -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-orange-500">
-                    <div class="text-xs text-orange-500 font-bold mb-2 uppercase">Sacred Wisdom | Gita</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"You have a right to perform your prescribed duty, but you are not entitled to the fruits of action."</p>
-                    <div class="text-sm text-slate-500">— Focus on the Work</div>
-                </div>
-
-                <!-- CEO Mindset -->
-                <div class="glass p-6 rounded-2xl card-hover border-l-4 border-blue-400">
-                    <div class="text-xs text-blue-400 font-bold mb-2 uppercase">CEO Mindset</div>
-                    <p class="italic text-slate-200 mb-4 text-lg">"The biggest risk is not taking any risk. In a world that's changing quickly, the only strategy that is guaranteed to fail is not taking risks."</p>
-                    <div class="text-sm text-slate-500">— Mark Zuckerberg</div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-xs text-slate-500 uppercase font-bold mb-1">Daily Summary</div>
+                    <div class="text-2xl font-bold">06:30</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Next: Tomorrow AM</div>
                 </div>
             </div>
-        </section>
 
-        <!-- Current Targets Section -->
-        <section id="targets" class="mb-16">
-            <h2 class="text-2xl font-semibold mb-8 flex items-center gap-3">
-                <i class="fas fa-bullseye text-red-500"></i> Today's Targets
-            </h2>
-            <div class="glass rounded-2xl overflow-hidden">
-                <table class="w-full text-left">
-                    <thead class="bg-slate-800/50">
-                        <tr>
-                            <th class="px-6 py-4 text-sm font-semibold text-slate-300">Target</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-slate-300">Category</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-slate-300">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-700/50">
-                        <tr>
-                            <td class="px-6 py-4">Sophia Deployment & Design</td>
-                            <td class="px-6 py-4"><span class="bg-indigo-500/20 text-indigo-400 text-xs px-2 py-1 rounded">Project</span></td>
-                            <td class="px-6 py-4"><span class="flex items-center gap-2"><i class="fas fa-circle-notch fa-spin text-indigo-500"></i> In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4">Mioo: Translation Layer & Schema Fixer</td>
-                            <td class="px-6 py-4"><span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded">Startup</span></td>
-                            <td class="px-6 py-4"><span class="flex items-center gap-2"><i class="fas fa-circle-notch fa-spin text-purple-500"></i> In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4">2 DSA Questions (DP)</td>
-                            <td class="px-6 py-4"><span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">Technical</span></td>
-                            <td class="px-6 py-4"><span class="text-slate-500 italic">Queued</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Task Manager -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-lg font-bold flex items-center gap-2">
+                                <i class="fas fa-list-check text-indigo-400"></i> Active Sprint: Feb 14
+                            </h2>
+                            <button class="text-xs text-indigo-400 hover:underline">Manage All Tasks</button>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <!-- Task 1 -->
+                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold">Sophia Deployment & Design</div>
+                                        <div class="text-[11px] text-slate-500 mt-1">Core Frontend / Infrastructure</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-[10px] px-2 py-1 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">High Priority</span>
+                                    <div class="text-xs font-mono text-slate-400">65%</div>
+                                </div>
+                            </div>
+
+                            <!-- Task 2 -->
+                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                                        <i class="fas fa-rocket"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold">Mioo: JSON Schema Fixer</div>
+                                        <div class="text-[11px] text-slate-500 mt-1">Startup / Backend Reliability</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-[10px] px-2 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">In Progress</span>
+                                    <div class="text-xs font-mono text-slate-400">40%</div>
+                                </div>
+                            </div>
+
+                            <!-- Task 3 -->
+                            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/30 flex items-center justify-between group opacity-60">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold">DSA: 2 Dynamic Programming Problems</div>
+                                        <div class="text-[11px] text-slate-500 mt-1">Technical Interviews</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-[10px] px-2 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700">Pending</span>
+                                    <div class="text-xs font-mono text-slate-400">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Journey Timeline -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                            <i class="fas fa-route text-indigo-400"></i> Career Timeline
+                        </h2>
+                        <div class="space-y-6 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-slate-800">
+                            <div class="relative pl-8">
+                                <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-900"></div>
+                                <div class="text-xs text-slate-500 mono mb-1">TODAY - 02:45 AM</div>
+                                <div class="text-sm font-bold text-slate-200">Raja-Hub Deployment v1.2</div>
+                                <div class="text-xs text-slate-400 mt-1">Full professional dashboard re-architecture. Focus on efficiency and command-center UI.</div>
+                            </div>
+                            <div class="relative pl-8 opacity-60">
+                                <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-900"></div>
+                                <div class="text-xs text-slate-500 mono mb-1">YESTERDAY</div>
+                                <div class="text-sm font-bold text-slate-200">Initial Collaboration Setup</div>
+                                <div class="text-xs text-slate-400 mt-1">Established 6:30 AM wrap-up system and long-term activity logging protocols.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Stats -->
+                <div class="space-y-6">
+                    <!-- Calendar -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-sm font-bold">February 2026</h2>
+                            <div class="flex gap-2">
+                                <i class="fas fa-chevron-left text-[10px] text-slate-500"></i>
+                                <i class="fas fa-chevron-right text-[10px] text-slate-500"></i>
+                            </div>
+                        </div>
+                        <div class="calendar-grid text-slate-500 font-bold text-[10px] text-center mb-2">
+                            <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+                        </div>
+                        <div class="calendar-grid text-slate-400">
+                            <!-- Placeholder days -->
+                            <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                            <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day day-active">14</div>
+                            <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links / Wrap ups -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h2 class="text-sm font-bold mb-4">Daily Logs</h2>
+                        <div class="space-y-2">
+                            <a href="#" class="block p-3 rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition border border-slate-800">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-semibold">Feb 13 Summary</span>
+                                    <i class="fas fa-external-link-alt text-[10px] text-slate-500"></i>
+                                </div>
+                            </a>
+                            <a href="#" class="block p-3 rounded-lg bg-slate-800/30 hover:bg-slate-800/50 transition border border-slate-800">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-semibold">Feb 12 Summary</span>
+                                    <i class="fas fa-external-link-alt text-[10px] text-slate-500"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Command Module (Motivation) -->
+                    <div class="glass-card rounded-2xl p-6 border-l-4 border-indigo-500">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i class="fas fa-quote-left text-indigo-400 text-xs"></i>
+                            <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Command Directive</span>
+                        </div>
+                        <p class="text-sm italic text-slate-300">"Karna didn't wait for permission to be the greatest archer. He just worked until the world had no choice but to notice."</p>
+                        <div class="mt-4 text-[10px] text-slate-500">— Focus on the 6:30 AM Target</div>
+                    </div>
+                </div>
             </div>
-        </section>
-
+        </div>
     </main>
-
-    <footer class="glass mt-auto py-8 text-center text-slate-500 text-sm">
-        Built with 💜 by Delulu for Raja's Career Journey.
-    </footer>
 </body>
 </html>
