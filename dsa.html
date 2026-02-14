@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raja Hub | DSA Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; }
+        pre { background: #0d0d0d; border: 1px solid #1a1a1a; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        code { font-family: 'JetBrains Mono', monospace; color: #00f2ff; }
+        .hack-box { border-left: 4px solid #00ff95; background: rgba(0, 255, 149, 0.05); }
+    </style>
+</head>
+<body class="p-8 lg:p-20">
+    <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_VAULT</a>
+    
+    <header class="mb-16">
+        <h1 class="text-5xl font-bold tracking-tighter mb-4">DSA VAULT</h1>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Neetcode 150 // Dynamic Programming</p>
+    </header>
+
+    <div class="space-y-12 max-w-5xl">
+        <!-- Partition Equal Subset Sum -->
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">1. Partition Equal Subset Sum</h2>
+            <p class="text-gray-400 mb-6">Determine if an array can be partitioned into two subsets with equal sums.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">2-Way Branching: For each element, it's either in Subset A or B. If sum(A) == sum(B) at the end, return True. Shortcut: total_sum must be even; search for total_sum/2.</p>
+            </div>
+
+            <details class="group">
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
+                <div class="mt-4">
+                    <pre><code>from functools import lru_cache
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        le = len(nums)
+        @lru_cache()
+        def search(i , l , r):
+            if i >= le:
+                return True if l==r else False
+            cur= nums[i]
+            l1 , l2 = search(i+1 ,l+cur , r) , search(i+1, l , r+cur)
+            return l1 or l2
+        return search(0 , 0 ,0 )</code></pre>
+                </div>
+            </details>
+        </section>
+
+        <!-- Longest Increasing Subsequence -->
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">2. Longest Increasing Subsequence (LIS)</h2>
+            <p class="text-gray-400 mb-6">Find the length of the longest strictly increasing subsequence in an array.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">Include/Exclude: At each step, if cur > prev, you can choose to include it (+1) or skip it. Maximize the result of both branches. State: (current_index, value_of_last_included).</p>
+            </div>
+
+            <details class="group">
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
+                <div class="mt-4">
+                    <pre><code>from functools import lru_cache
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        l = len(nums)
+        @lru_cache(None)
+        def search(n , prev):
+            if n >= l:
+                return 0
+            cur = nums[n]
+            res = 0
+            if cur > prev:
+                res = search(n+1, cur) + 1
+            res = max(search(n+1, prev), res)
+            return res
+        return search(0, float("-inf"))</code></pre>
+                </div>
+            </details>
+        </section>
+    </div>
+</body>
+</html>
