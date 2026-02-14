@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raja Hub | Execution Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; transition: all 0.3s; }
+        .glass-panel:hover { border-color: #00f2ff; }
+        .target-card { border-left: 4px solid #333; }
+        .target-card.high { border-left-color: #00f2ff; }
+        .target-card.medium { border-left-color: #00ff95; }
+        .target-card.academic { border-left-color: #818cf8; }
+    </style>
+</head>
+<body class="p-8 lg:p-20">
+    <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_STACK</a>
+    
+    <header class="mb-16">
+        <h1 class="text-5xl font-bold tracking-tighter mb-4">EXECUTION STACK</h1>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Sprints // 2026-02-14</p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-6 max-w-5xl">
+        
+        <!-- Startup: Mioo -->
+        <div class="glass-panel p-6 rounded-2xl target-card high">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">Startup // Mioo</span>
+                    <h2 class="text-2xl font-bold mt-1">Core Logic & Reliability</h2>
+                </div>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">CRITICAL</span>
+            </div>
+            <ul class="space-y-2 text-gray-400 text-sm">
+                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> Translation layer integration</li>
+                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> JSON Schema fixer completion</li>
+                <li class="flex items-center gap-2"><i class="fas fa-square text-[10px]"></i> Error handling & Retry logic</li>
+            </ul>
+        </div>
+
+        <!-- Project: Sophia -->
+        <div class="glass-panel p-6 rounded-2xl target-card high">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">Project // Sophia</span>
+                    <h2 class="text-2xl font-bold mt-1">Deployment & UI Design</h2>
+                </div>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">HIGH</span>
+            </div>
+            <p class="text-sm text-gray-400">Complete the deployment pipeline and finalize the aesthetic design for the Sophia platform.</p>
+        </div>
+
+        <!-- Architecture: AI for Bharath -->
+        <div class="glass-panel p-6 rounded-2xl target-card medium">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Architecture // AI for Bharath</span>
+                    <h2 class="text-2xl font-bold mt-1">System Design</h2>
+                </div>
+                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">PLANNING</span>
+            </div>
+            <p class="text-sm text-gray-400">Draft the initial architecture for the "AI for Bharath" national-scale infrastructure.</p>
+        </div>
+
+        <!-- Technical: DSA -->
+        <div class="glass-panel p-6 rounded-2xl target-card medium">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">Technical // DSA</span>
+                    <h2 class="text-2xl font-bold mt-1">Dynamic Programming</h2>
+                </div>
+                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">DAILY</span>
+            </div>
+            <p class="text-sm text-gray-400">Solve 2 high-level DSA questions focusing on Dynamic Programming patterns.</p>
+        </div>
+
+        <!-- Academic -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-panel p-6 rounded-2xl target-card academic">
+                <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // OS</span>
+                <h2 class="text-xl font-bold mt-1">Operating Systems</h2>
+                <p class="text-sm text-gray-400 mt-2">Revision of core OS concepts.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl target-card academic">
+                <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // DBMS</span>
+                <h2 class="text-xl font-bold mt-1">DBMS Completion</h2>
+                <p class="text-sm text-gray-400 mt-2">Finalize the Database Management Systems syllabus.</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
