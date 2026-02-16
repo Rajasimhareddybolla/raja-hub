@@ -11,12 +11,10 @@
         body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; transition: all 0.3s; }
-        .glass-panel:hover { border-color: #00f2ff; }
+        .glass-panel:hover { border-color: #00f2ff; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1); }
         .target-card { border-left: 4px solid #333; }
         .target-card.high { border-left-color: #00f2ff; }
-        .target-card.medium { border-left-color: #00ff95; }
         .target-card.academic { border-left-color: #818cf8; }
-        .target-card.critical { border-left-color: #ff2d55; }
         .target-card.completed { border-left-color: #00ff95; opacity: 0.8; }
     </style>
 </head>
@@ -29,43 +27,43 @@
     </header>
 
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
-        <!-- DSA 2D DP Practice -->
-        <div class="glass-panel p-6 rounded-2xl target-card completed">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">DSA // DP</span>
-                    <h2 class="text-2xl font-bold mt-1">2D DP Optimization</h2>
-                </div>
-                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">COMPLETED</span>
-            </div>
-            <p class="text-sm text-gray-400">Solved Longest Common Subsequence and Unique Paths.</p>
-        </div>
-    
-        <!-- Mioo Latency Fix -->
+        <!-- Mioo -->
         <div class="glass-panel p-6 rounded-2xl target-card completed">
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">Startup // Mioo</span>
-                    <h2 class="text-2xl font-bold mt-1">Fix Latency Issues</h2>
+                    <h2 class="text-2xl font-bold mt-1">Mioo Pipeline Optimization</h2>
                 </div>
                 <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">COMPLETED</span>
             </div>
-            <p class="text-sm text-gray-400">Optimized pipeline from 20s to 8s using streaming.</p>
+            <p class="text-sm text-gray-400">Successfully reduced latency from 20s to 8s using streaming. Massive UX upgrade.</p>
         </div>
 
-        <!-- Academic: Major Project -->
+        <!-- DSA -->
+        <div class="glass-panel p-6 rounded-2xl target-card completed">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">DSA // 2D DP</span>
+                    <h2 class="text-2xl font-bold mt-1">DP Patterns Mastery</h2>
+                </div>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">COMPLETED</span>
+            </div>
+            <p class="text-sm text-gray-400">Solved LCS (Memoization) and Unique Paths (Bottom-up). 2D DP logic verified.</p>
+        </div>
+
+        <!-- Major Project -->
         <div class="glass-panel p-6 rounded-2xl target-card high">
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // Project</span>
                     <h2 class="text-2xl font-bold mt-1">Major Project Title Selection</h2>
                 </div>
-                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">HIGH</span>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">HIGH</span>
             </div>
             <p class="text-sm text-gray-400">Finalize the core theme and title for the final year major project.</p>
         </div>
 
-        <!-- Academic: Core Subjects -->
+        <!-- Academic Revisions -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="glass-panel p-6 rounded-2xl target-card academic">
                 <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // OS</span>
