@@ -25,6 +25,74 @@
     </header>
 
     <div class="space-y-12 max-w-5xl">
+        <!-- Longest Common Subsequence -->
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">3. Longest Common Subsequence (LCS)</h2>
+            <p class="text-gray-400 mb-6">Given two strings, find the length of the longest subsequence present in both of them.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">Match or Shift: If chars match, move both pointers (+1). If not, branch into two calls: shift string1 or shift string2. Take the max of both branches. State: (i, j).</p>
+            </div>
+
+            <details class="group">
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
+                <div class="mt-4">
+                    <pre><code>class Solution: 
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int: 
+        l1 , l2 = len(text1) , len(text2) 
+        memo = {} 
+        def search(i , j ): 
+            if i >= l1 or j>=l2: 
+                return 0 
+            if (i , j ) in memo: 
+                return memo[(i , j)] 
+            res = 0 
+            if text1[i] == text2[j]: 
+                res = max( res , search(i+1 , j+1)+1) 
+            l = search(i+1 , j) 
+            r = search(i , j+1) 
+            res = max(l , r , res) 
+            memo[(i , j)] = res 
+            return res 
+        return search(0 , 0)</code></pre>
+                </div>
+            </details>
+        </section>
+
+        <!-- Unique Paths -->
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">4. Unique Paths</h2>
+            <p class="text-gray-400 mb-6">Find the number of possible unique paths from the top-left corner to the bottom-right corner of a grid.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">Grid Summing: Each cell's path count is the sum of the cell to its right and the cell below it. Bottom-up approach avoids recursion overhead. Base Case: Bottom-right = 1.</p>
+            </div>
+
+            <details class="group">
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
+                <div class="mt-4">
+                    <pre><code>class Solution: 
+    def uniquePaths(self, m: int, n: int) -> int: 
+        poss = [[0,1] , [1,0] ] 
+        mat = [[0]*n for _ in range(m)] 
+        mat[m-1][n-1] = 1 
+        for i in range(m-1,-1,-1): 
+            for j in range(n-1,-1,-1): 
+                if i==m-1 and j==n-1: 
+                    continue 
+                res=0 
+                for dx, dy in poss: 
+                    ix , jy = i+dx , j+dy 
+                    if (0<=ix<m and 0<=jy<n): 
+                        res += mat[ix][jy] 
+                mat[i][j] = res 
+        return mat[0][0]</code></pre>
+                </div>
+            </details>
+        </section>
+
         <!-- Partition Equal Subset Sum -->
         <section class="glass-panel p-8 rounded-2xl">
             <h2 class="text-2xl font-bold mb-4 text-cyan-400">1. Partition Equal Subset Sum</h2>
