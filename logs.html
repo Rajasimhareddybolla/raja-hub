@@ -6,61 +6,70 @@
     <title>Raja Hub | Daily Logs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; transition: all 0.3s; }
+        .glass-panel:hover { border-color: #00f2ff; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1); }
+    </style>
 </head>
-<body class="bg-black text-white p-12">
-    <a href="index.html" class="text-cyan-500 mb-8 inline-block">&larr; Back to Dashboard</a>
-    <h1 class="text-4xl font-bold mb-12 uppercase tracking-widest">Execution Archive</h1>
+<body class="p-8 lg:p-20">
+    <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_LOGS</a>
     
+    <header class="mb-16">
+        <h1 class="text-5xl font-bold tracking-tighter mb-4 uppercase">Execution Archive</h1>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Historical Performance Tracking</p>
+    </header>
+
     <div class="space-y-8 max-w-5xl">
-        <!-- Log Entry 2026-02-14 -->
-        <div class="border border-gray-800 p-8 rounded-2xl bg-gray-900/30">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-cyan-400">2026-02-14</h2>
-                <span class="text-xs bg-cyan-500/10 text-cyan-500 px-3 py-1 rounded-full border border-cyan-500/20">Archived</span>
+        <!-- Log Entry 2026-02-16 -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-cyan-500">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-cyan-400">2026-02-16</h2>
+                <span class="text-xs bg-cyan-500/10 text-cyan-500 px-3 py-1 rounded border border-cyan-500/20 uppercase mono">Live</span>
             </div>
-            <div class="space-y-4 text-gray-400">
-                <p>Completed Sophia Deployment & UI Design.</p>
-                <p>Implemented critical Mioo High-Reliability Retry Logic.</p>
-                <p>Finalized Architecture for 'AI for Bharath'.</p>
-                <p>Solved 2 DSA DP questions (Partition Equal Subset Sum & LIS).</p>
-                <p>Managed targets and synchronized Hub via Delulu.</p>
-            </div>
-        </div>
-    
-        <!-- Log Entry 2026-02-14 -->
-        <div class="border border-gray-800 p-8 rounded-2xl bg-gray-900/30">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-cyan-400">2026-02-14</h2>
-                <span class="text-xs bg-cyan-500/10 text-cyan-500 px-3 py-1 rounded-full border border-cyan-500/20">Archived</span>
-            </div>
-            <div class="space-y-4 text-gray-400">
-                <p>[Startup] Pushed the integrated Translation Layer and backend refinements to the Apex branch.</p>
-                <p>[Git] Resolved merge conflicts and successfully synced local development with the remote repository.</p>
-            </div>
-        </div>
-    
-        <!-- Log Entry Feb 14 -->
-        <div class="border border-gray-800 p-8 rounded-2xl bg-gray-900/30">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-cyan-400">2026-02-14</h2>
-                <span class="text-xs bg-cyan-500/10 text-cyan-500 px-3 py-1 rounded-full border border-cyan-500/20">Active Session</span>
-            </div>
-            <div class="space-y-4 text-gray-400">
-                <p><strong class="text-white">[Automation]</strong> Initialized the Daily 6:30 AM Wrap-up system and structured logging.</p>
-                <p><strong class="text-white">[Project]</strong> Developed and deployed Raja-Hub v1.0 through v3.0 (Terminal Interface).</p>
-                <p><strong class="text-white">[Valentine]</strong> Built a custom CSS heart project with Joi/Elon visual integration.</p>
-                <p><strong class="text-white">[Coaching]</strong> Established the Daily Target tracker and firm performance coaching protocol.</p>
+            <div class="space-y-4 text-gray-400 text-sm">
+                <p><strong class="text-white">[Mioo]</strong> Achieved 8-second streaming latency optimization.</p>
+                <p><strong class="text-white">[DSA]</strong> Mastered 2D DP patterns: LCS and Unique Paths implemented with memoization.</p>
+                <p><strong class="text-white">[Hub]</strong> Performed full system audit and synchronization of the Terminal One command center.</p>
             </div>
         </div>
 
-        <!-- Log Entry Feb 13 -->
-        <div class="border border-gray-800 p-8 rounded-2xl bg-gray-900/30 opacity-60">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-gray-500">2026-02-13</h2>
-                <span class="text-xs bg-gray-500/10 text-gray-500 px-3 py-1 rounded-full">Archive</span>
+        <!-- Log Entry 2026-02-15 -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-indigo-500">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-indigo-400">2026-02-15</h2>
+                <span class="text-xs bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded border border-indigo-500/20 uppercase mono">Archived</span>
             </div>
-            <div class="space-y-4 text-gray-500">
-                <p>System initialization and initial persona alignment. No structured logs were captured prior to protocol launch.</p>
+            <div class="space-y-4 text-gray-400 text-sm">
+                <p><strong class="text-white">[Academic]</strong> Completed GATE 2026 diagnostic "lite" attempt in Harohalli.</p>
+                <p><strong class="text-white">[System]</strong> Post-exam recovery and alignment session for upcoming sprint.</p>
+            </div>
+        </div>
+
+        <!-- Log Entry 2026-02-14 -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-gray-700">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-500">2026-02-14</h2>
+                <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1 rounded border border-gray-700 uppercase mono">Archived</span>
+            </div>
+            <div class="space-y-4 text-gray-500 text-sm">
+                <p><strong class="text-white">[Infrastructure]</strong> Initialized Raja-Hub Terminal v3.0 architecture.</p>
+                <p><strong class="text-white">[Mioo]</strong> Implemented high-reliability retry logic and schema fixers.</p>
+                <p><strong class="text-white">[DSA]</strong> Solved Partition Equal Subset Sum and LIS.</p>
+                <p><strong class="text-white">[Custom]</strong> Deployed Valentine CSS project with Joi/Elon integration.</p>
+            </div>
+        </div>
+
+        <!-- Log Entry 2026-02-13 -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-gray-900 opacity-40">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-600">2026-02-13</h2>
+                <span class="text-xs text-gray-600 px-3 py-1 rounded border border-gray-800 uppercase mono">Legacy</span>
+            </div>
+            <div class="space-y-4 text-gray-600 text-sm">
+                <p>System initialization and protocol launch. No structured logs captured prior to launch.</p>
             </div>
         </div>
     </div>
