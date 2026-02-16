@@ -6,22 +6,75 @@
     <title>Raja Hub | Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; transition: all 0.3s; }
+        .glass-panel:hover { border-color: #00f2ff; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1); }
+    </style>
 </head>
-<body class="bg-black text-white p-12">
-    <a href="index.html" class="text-cyan-500 mb-8 inline-block">&larr; Back to Dashboard</a>
-    <h1 class="text-4xl font-bold mb-8">Projects Stack</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="border border-gray-800 p-8 rounded-xl bg-gray-900/50">
-            <h2 class="text-2xl font-bold mb-4">Sophia</h2>
-            <p class="text-gray-400">Deployment and design phase. Modern infrastructure setup.</p>
+<body class="p-8 lg:p-20">
+    <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_PROJECTS</a>
+    
+    <header class="mb-16">
+        <h1 class="text-5xl font-bold tracking-tighter mb-4">PROJECTS STACK</h1>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Development // Roadmap 2026</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Mioo -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-cyan-500">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold">Mioo</h2>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">SCALING</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6">Translation layers, JSON Schema fixers, and high-reliability LLM retry logic.</p>
+            <div class="space-y-2">
+                <div class="flex justify-between text-[10px] mono text-gray-500">
+                    <span>LATENCY_OPTIMIZATION</span>
+                    <span class="text-cyan-500">8.0s (STABLE)</span>
+                </div>
+                <div class="w-full bg-gray-900 h-1 rounded-full">
+                    <div class="bg-cyan-500 h-full rounded-full" style="width: 85%"></div>
+                </div>
+            </div>
         </div>
-        <div class="border border-gray-800 p-8 rounded-xl bg-gray-900/50">
-            <h2 class="text-2xl font-bold mb-4">Mioo</h2>
-            <p class="text-gray-400">Startup - Translation layers, JSON Schema fixers, and high-reliability LLM retry logic.</p>
+
+        <!-- Sophia -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-indigo-500">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold">Sophia</h2>
+                <span class="text-[10px] bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded border border-indigo-500/20">DEPLOYMENT</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6">Modern infrastructure setup and full-stack architecture design.</p>
+            <div class="space-y-2">
+                <div class="flex justify-between text-[10px] mono text-gray-500">
+                    <span>INFRA_READY</span>
+                    <span class="text-indigo-400">90%</span>
+                </div>
+                <div class="w-full bg-gray-900 h-1 rounded-full">
+                    <div class="bg-indigo-500 h-full rounded-full" style="width: 90%"></div>
+                </div>
+            </div>
         </div>
-        <div class="border border-gray-800 p-8 rounded-xl bg-gray-900/50">
-            <h2 class="text-2xl font-bold mb-4">AI for Bharath</h2>
-            <p class="text-gray-400">Architecture design phase. National scale AI infrastructure.</p>
+
+        <!-- AI for Bharath -->
+        <div class="glass-panel p-8 rounded-2xl border-l-4 border-gray-700">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold">AI for Bharath</h2>
+                <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-1 rounded border border-gray-700">PLANNING</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-6">Architecture design phase for national-scale AI infrastructure.</p>
+            <div class="space-y-2">
+                <div class="flex justify-between text-[10px] mono text-gray-500">
+                    <span>ARCHITECTURE_DOCS</span>
+                    <span class="text-gray-500">30%</span>
+                </div>
+                <div class="w-full bg-gray-900 h-1 rounded-full">
+                    <div class="bg-gray-700 h-full rounded-full" style="width: 30%"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
