@@ -16,91 +16,104 @@
         .professor-note { border-left: 4px solid #00f2ff; background: rgba(0, 242, 255, 0.05); padding: 1rem; margin-bottom: 1.5rem; font-style: italic; color: #a5f3fc; }
         .run-btn { background: #1a1a1a; border: 1px solid #333; color: #888; padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; transition: all 0.2s; }
         .run-btn:hover { background: #00ff95; color: #000; border-color: #00ff95; }
+        .category-header { border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 2rem; color: #888; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
     </style>
 </head>
 <body class="p-8 lg:p-20">
     <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_LECTURE</a>
     
     <header class="mb-16">
-        <h1 class="text-5xl font-bold tracking-tighter mb-4 uppercase">MongoDB Query Masterclass</h1>
+        <h1 class="text-5xl font-bold tracking-tighter mb-4 uppercase">MongoDB Deep Dive</h1>
         <p class="text-gray-500 mono text-sm uppercase tracking-widest">Professor Delulu // Academic Series 01</p>
     </header>
 
     <div class="max-w-5xl space-y-12">
         
-        <!-- Introduction -->
         <div class="professor-note">
-            "Listen up. NoSQL isn't 'No SQL', it's 'Not Only SQL'. We think in Documents here, not Rows. Master these 4 fundamental patterns, and you'll dominate the backend."
+            "You want the whole beast? Fine. We're going beyond simple CRUD. We're talking Complex Querying, Array Manipulation, Indexing, and the full Aggregation Framework. Pay attention, Raja."
         </div>
 
-        <!-- Create -->
+        <!-- CRUD Section -->
+        <div class="category-header">Module 01 // Advanced CRUD & Comparison</div>
         <section class="glass-panel p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-400">01. THE INGESTION (Insert)</h2>
-            <p class="text-gray-400 mb-6">Storing data in BSON (Binary JSON) format.</p>
-            
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">Comparison Operators ($gt, $in, $ne)</h2>
+            <p class="text-gray-400 mb-6">Finding documents based on ranges or specific lists.</p>
             <div class="code-block">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] mono text-gray-500">QUERY_BUFFER</span>
                     <button class="run-btn mono" onclick="toggleOutput('out1')">RUN_QUERY</button>
                 </div>
-                <code class="text-cyan-500">db.students.insertOne({<br>&nbsp;&nbsp;name: "Raja Bolla",<br>&nbsp;&nbsp;role: "Billionaire Founder",<br>&nbsp;&nbsp;skills: ["Python", "JS", "AI"]<br>})</code>
-                
+                <code class="text-cyan-500">db.products.find({<br>&nbsp;&nbsp;price: { $gt: 500, $lt: 2000 },<br>&nbsp;&nbsp;category: { $in: ["Electronics", "Laptops"] },<br>&nbsp;&nbsp;stock: { $ne: 0 }<br>})</code>
                 <div id="out1" class="output-block">
-                    { "acknowledged" : true, "insertedId" : ObjectId("65d0a1b...") }
+                    [<br>&nbsp;&nbsp;{ "name": "M3 MacBook Air", "price": 1099, "category": "Laptops", "stock": 15 }<br>]
                 </div>
             </div>
         </section>
 
-        <!-- Read / Find -->
+        <!-- Array Manipulation -->
+        <div class="category-header">Module 02 // Array Power ($all, $elemMatch, $size)</div>
         <section class="glass-panel p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-400">02. THE DISCOVERY (Find)</h2>
-            <p class="text-gray-400 mb-6">Filtering documents with specific criteria.</p>
-            
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">Array Element Matching</h2>
+            <p class="text-gray-400 mb-6">Querying documents that contain arrays matching specific complex conditions.</p>
             <div class="code-block">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] mono text-gray-500">QUERY_BUFFER</span>
                     <button class="run-btn mono" onclick="toggleOutput('out2')">RUN_QUERY</button>
                 </div>
-                <code class="text-cyan-500">db.students.find({<br>&nbsp;&nbsp;skills: "AI"<br>}).pretty()</code>
-                
+                <code class="text-cyan-500">db.users.find({<br>&nbsp;&nbsp;grades: { <br>&nbsp;&nbsp;&nbsp;&nbsp;$elemMatch: { score: { $gt: 90 }, subject: "ML" } <br>&nbsp;&nbsp;}<br>})</code>
                 <div id="out2" class="output-block">
-                    [<br>&nbsp;&nbsp;{ "_id": "...", "name": "Raja Bolla", "skills": ["Python", "JS", "AI"] }<br>]
+                    [<br>&nbsp;&nbsp;{ "user": "Raja", "grades": [{ "subject": "ML", "score": 98 }] }<br>]
                 </div>
             </div>
         </section>
 
-        <!-- Aggregation -->
+        <!-- Atomic Updates -->
+        <div class="category-header">Module 03 // Atomic Update Operators ($inc, $rename, $unset)</div>
         <section class="glass-panel p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-400">03. THE PIPELINE (Aggregate)</h2>
-            <p class="text-gray-400 mb-6">The power of MongoDB. Transform, group, and calculate data in stages.</p>
-            
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">Field Transformation</h2>
+            <p class="text-gray-400 mb-6">Modifying document structure without rewriting the whole object.</p>
             <div class="code-block">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] mono text-gray-500">QUERY_BUFFER</span>
                     <button class="run-btn mono" onclick="toggleOutput('out3')">RUN_QUERY</button>
                 </div>
-                <code class="text-cyan-500">db.students.aggregate([<br>&nbsp;&nbsp;{ $match: { role: "Billionaire Founder" } },<br>&nbsp;&nbsp;{ $unwind: "$skills" },<br>&nbsp;&nbsp;{ $group: { _id: "$skills", count: { $sum: 1 } } }<br>])</code>
-                
+                <code class="text-cyan-500">db.students.updateMany(<br>&nbsp;&nbsp;{ year: 2025 },<br>&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;$inc: { credits: 4 }, <br>&nbsp;&nbsp;&nbsp;&nbsp;$rename: { "old_email": "email" },<br>&nbsp;&nbsp;&nbsp;&nbsp;$set: { status: "PROMOTED" }<br>&nbsp;&nbsp;}<br>)</code>
                 <div id="out3" class="output-block">
-                    { "_id": "AI", "count": 1 }<br>{ "_id": "Python", "count": 1 }<br>{ "_id": "JS", "count": 1 }
+                    { "matchedCount" : 42, "modifiedCount" : 42 }
                 </div>
             </div>
         </section>
 
-        <!-- Update -->
+        <!-- The Aggregation Framework -->
+        <div class="category-header">Module 04 // Aggregation Mastery ($lookup, $project, $sort)</div>
         <section class="glass-panel p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-400">04. THE EVOLUTION (Update)</h2>
-            <p class="text-gray-400 mb-6">Using atomic operators like $set or $push to modify existing docs.</p>
-            
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">The JOIN Equivalent ($lookup)</h2>
+            <p class="text-gray-400 mb-6">Performing left-outer joins between collections.</p>
             <div class="code-block">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] mono text-gray-500">QUERY_BUFFER</span>
                     <button class="run-btn mono" onclick="toggleOutput('out4')">RUN_QUERY</button>
                 </div>
-                <code class="text-cyan-500">db.students.updateOne(<br>&nbsp;&nbsp;{ name: "Raja Bolla" },<br>&nbsp;&nbsp;{ $push: { skills: "MongoDB Master" } }<br>)</code>
-                
+                <code class="text-cyan-500">db.orders.aggregate([<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;$lookup: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from: "inventory",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;localField: "item",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreignField: "sku",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as: "inventory_details"<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{ $unwind: "$inventory_details" },<br>&nbsp;&nbsp;{ $project: { order_id: 1, "inventory_details.stock": 1 } }<br>])</code>
                 <div id="out4" class="output-block">
-                    { "matchedCount" : 1, "modifiedCount" : 1 }
+                    { "_id": 1, "order_id": "ABC", "inventory_details": { "stock": 450 } }
+                </div>
+            </div>
+        </section>
+
+        <!-- Indexing -->
+        <div class="category-header">Module 05 // Performance & Optimization (Indexes)</div>
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">Indexing Strategies</h2>
+            <p class="text-gray-400 mb-6">Speeding up queries by creating single and compound indexes.</p>
+            <div class="code-block">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] mono text-gray-500">QUERY_BUFFER</span>
+                    <button class="run-btn mono" onclick="toggleOutput('out5')">RUN_QUERY</button>
+                </div>
+                <code class="text-cyan-500">db.users.createIndex({ "email": 1 }, { unique: true })<br>db.logs.createIndex({ "status": 1, "timestamp": -1 })</code>
+                <div id="out5" class="output-block">
+                    "email_1_unique" created. <br> "status_1_timestamp_-1" created.
                 </div>
             </div>
         </section>
