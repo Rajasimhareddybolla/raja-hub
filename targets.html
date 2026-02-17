@@ -11,10 +11,10 @@
         body { background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .glass-panel { background: rgba(13, 13, 13, 0.8); border: 1px solid #1a1a1a; transition: all 0.3s; }
-        .glass-panel:hover { border-color: #00f2ff; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1); }
+        .glass-panel:hover { border-color: #ff2d55; box-shadow: 0 0 30px rgba(255, 45, 85, 0.1); }
         .target-card { border-left: 4px solid #333; }
+        .target-card.critical { border-left-color: #ff2d55; }
         .target-card.high { border-left-color: #00f2ff; }
-        .target-card.academic { border-left-color: #818cf8; }
         .target-card.completed { border-left-color: #00ff95; opacity: 0.8; }
     </style>
 </head>
@@ -22,12 +22,47 @@
     <a href="index.html" class="text-gray-500 hover:text-cyan-500 mb-12 inline-block mono">/ EXIT_STACK</a>
     
     <header class="mb-16">
-        <h1 class="text-5xl font-bold tracking-tighter mb-4">EXECUTION STACK</h1>
-        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Sprints // 2026-02-16</p>
+        <h1 class="text-5xl font-bold tracking-tighter mb-4 text-red-500">EXAM PROTOCOL</h1>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Sprints // T-Minus 48 Hours</p>
     </header>
 
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
-        <!-- Mioo -->
+        <!-- Exam Focus -->
+        <div class="glass-panel p-6 rounded-2xl target-card critical">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">CRITICAL // EXAM PREP</span>
+                    <h2 class="text-2xl font-bold mt-1">Operating Systems Intensive</h2>
+                </div>
+                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">48H REMAINING</span>
+            </div>
+            <p class="text-sm text-gray-400">Deep dive into CPU Scheduling, Memory Management, and Deadlocks. No distractions.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl target-card critical">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">CRITICAL // EXAM PREP</span>
+                    <h2 class="text-2xl font-bold mt-1">DBMS Core Mastery</h2>
+                </div>
+                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">48H REMAINING</span>
+            </div>
+            <p class="text-sm text-gray-400">Normalization, SQL Optimization, and Transaction Management. Mastery required.</p>
+        </div>
+
+        <!-- Career Continuity -->
+        <div class="glass-panel p-6 rounded-2xl target-card high opacity-50">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // Project</span>
+                    <h2 class="text-2xl font-bold mt-1">Major Project Title Selection</h2>
+                </div>
+                <span class="text-[10px] bg-gray-500/10 text-gray-400 px-2 py-1 rounded border border-gray-500/20">LOW PRIORITY</span>
+            </div>
+            <p class="text-sm text-gray-400">Postponed until after exam cycle.</p>
+        </div>
+
+        <!-- Completed Wins -->
         <div class="glass-panel p-6 rounded-2xl target-card completed">
             <div class="flex justify-between items-start mb-4">
                 <div>
@@ -35,45 +70,6 @@
                     <h2 class="text-2xl font-bold mt-1">Mioo Pipeline Optimization</h2>
                 </div>
                 <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">COMPLETED</span>
-            </div>
-            <p class="text-sm text-gray-400">Successfully reduced latency from 20s to 8s using streaming. Massive UX upgrade.</p>
-        </div>
-
-        <!-- DSA -->
-        <div class="glass-panel p-6 rounded-2xl target-card completed">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">DSA // 2D DP</span>
-                    <h2 class="text-2xl font-bold mt-1">DP Patterns Mastery</h2>
-                </div>
-                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">COMPLETED</span>
-            </div>
-            <p class="text-sm text-gray-400">Solved LCS (Memoization) and Unique Paths (Bottom-up). 2D DP logic verified.</p>
-        </div>
-
-        <!-- Major Project -->
-        <div class="glass-panel p-6 rounded-2xl target-card high">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // Project</span>
-                    <h2 class="text-2xl font-bold mt-1">Major Project Title Selection</h2>
-                </div>
-                <span class="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">HIGH</span>
-            </div>
-            <p class="text-sm text-gray-400">Finalize the core theme and title for the final year major project.</p>
-        </div>
-
-        <!-- Academic Revisions -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass-panel p-6 rounded-2xl target-card academic">
-                <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // OS</span>
-                <h2 class="text-xl font-bold mt-1">Operating Systems</h2>
-                <p class="text-sm text-gray-400 mt-2">Finish carryover revision of core OS concepts.</p>
-            </div>
-            <div class="glass-panel p-6 rounded-2xl target-card academic">
-                <span class="text-[10px] mono text-indigo-400 uppercase tracking-widest">Academic // DBMS</span>
-                <h2 class="text-xl font-bold mt-1">DBMS Syllabus</h2>
-                <p class="text-sm text-gray-400 mt-2">Complete the pending Database segments.</p>
             </div>
         </div>
 
