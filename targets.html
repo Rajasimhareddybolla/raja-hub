@@ -14,6 +14,7 @@
         .glass-panel:hover { border-color: #ff2d55; box-shadow: 0 0 30px rgba(255, 45, 85, 0.1); }
         .target-card { border-left: 4px solid #333; }
         .target-card.critical { border-left-color: #ff2d55; }
+        .target-card.completed { border-left-color: #00ff95; opacity: 0.8; }
         .target-card.high { border-left-color: #00f2ff; }
     </style>
 </head>
@@ -22,44 +23,44 @@
     
     <header class="mb-16">
         <h1 class="text-5xl font-bold tracking-tighter mb-4 text-red-500">EXAM SEASON</h1>
-        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Sprints // STATUS: CRITICAL // Feb 19th Launch</p>
+        <p class="text-gray-500 mono text-sm uppercase tracking-widest">Active Sprints // T-Minus 24 Hours to ML</p>
     </header>
 
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
+        <!-- Completed Today -->
+        <div class="glass-panel p-6 rounded-2xl target-card completed">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-[10px] mono text-green-500 uppercase tracking-widest">CAREER</span>
+                    <h2 class="text-2xl font-bold mt-1">Technical Interview</h2>
+                </div>
+                <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded border border-green-500/20">COMPLETED</span>
+            </div>
+            <p class="text-sm text-gray-400">Successfully attended the interview session.</p>
+        </div>
+
         <!-- Machine Learning -->
         <div class="glass-panel p-6 rounded-2xl target-card critical">
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] mono text-red-500 uppercase tracking-widest">EXAM 01 // FEB 19</span>
-                    <h2 class="text-2xl font-bold mt-1">Machine Learning</h2>
+                    <h2 class="text-2xl font-bold mt-1">ML: PYQ Intensive</h2>
                 </div>
-                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">TARGET_19</span>
+                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">STRIKE_TARGET</span>
             </div>
-            <p class="text-sm text-gray-400">Core algorithms, optimization, and model evaluation techniques. Today's focus: Linear/Logistic Regression, SVM, and Tree-based models.</p>
+            <p class="text-sm text-gray-400">Complete thorough review of Previous Year Questions. Focus on core algorithms.</p>
         </div>
 
-        <!-- Big Data -->
-        <div class="glass-panel p-6 rounded-2xl target-card critical">
+        <!-- Big Data & Cloud -->
+        <div class="glass-panel p-6 rounded-2xl target-card high">
             <div class="flex justify-between items-start mb-4">
                 <div>
-                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">EXAM 02</span>
-                    <h2 class="text-2xl font-bold mt-1">Big Data & Analytics</h2>
+                    <span class="text-[10px] mono text-cyan-500 uppercase tracking-widest">EXAM 02 & 03</span>
+                    <h2 class="text-2xl font-bold mt-1">Big Data & Cloud</h2>
                 </div>
-                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">PENDING_DATE</span>
+                <span class="text-[10px] bg-cyan-500/10 text-cyan-500 px-2 py-1 rounded border border-cyan-500/20">80% COMPLETE</span>
             </div>
-            <p class="text-sm text-gray-400">Hadoop, Spark, and large-scale data processing patterns.</p>
-        </div>
-
-        <!-- Cloud Computing -->
-        <div class="glass-panel p-6 rounded-2xl target-card critical">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <span class="text-[10px] mono text-red-500 uppercase tracking-widest">EXAM 03</span>
-                    <h2 class="text-2xl font-bold mt-1">Cloud Computing</h2>
-                </div>
-                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">PENDING_DATE</span>
-            </div>
-            <p class="text-sm text-gray-400">Virtualization, cloud service models (IaaS/PaaS/SaaS), and AWS/Azure architecture.</p>
+            <p class="text-sm text-gray-400">Final 20% polish and revision pending.</p>
         </div>
 
         <!-- Advanced DSA -->
@@ -67,11 +68,11 @@
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <span class="text-[10px] mono text-red-500 uppercase tracking-widest">EXAM 04</span>
-                    <h2 class="text-2xl font-bold mt-1">Advanced Data Structures</h2>
+                    <h2 class="text-2xl font-bold mt-1">Advanced DSA: PYQ Strike</h2>
                 </div>
-                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">PENDING_DATE</span>
+                <span class="text-[10px] bg-red-500/10 text-red-500 px-2 py-1 rounded border border-red-500/20">CRITICAL</span>
             </div>
-            <p class="text-sm text-gray-400">Advanced graph theory, segment trees, and algorithm optimization.</p>
+            <p class="text-sm text-gray-400">Solving and memorizing patterns from prior exam papers.</p>
         </div>
 
     </div>
