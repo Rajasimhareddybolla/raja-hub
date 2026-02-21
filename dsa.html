@@ -95,25 +95,62 @@
         </section>
 
         <!-- Partition Equal Subset Sum -->
-        <section class="glass-panel p-8 rounded-2xl opacity-80">
-            <h2 class="text-2xl font-bold mb-4 text-gray-400">3. Partition Equal Subset Sum</h2>
-            <p class="text-gray-400 mb-6">Determine if an array can be partitioned into two subsets with equal sums.</p>
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">3. Partition Equal Subset Sum</h2>
+            <p class="text-gray-400 mb-6">Determine if an array can be partitioned into two subsets such that the sum of elements in both subsets is equal.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">Target Sum: If total sum is odd, impossible. Otherwise, target = total sum / 2. Decision: for each number, either include it in the sum or don't. Memoize the (index, current_sum).</p>
+            </div>
+
             <details class="group">
-                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Solution</summary>
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
                 <div class="mt-4">
-                    <pre><code># Solution Archive</code></pre>
+                    <pre><code>from functools import lru_cache
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        le = len(nums)
+        @lru_cache()
+        def search(i , l , r):
+            if i >= le:
+                return True if l==r else False
+            cur= nums[i]
+            l1 , l2 = search(i+1 ,l+cur , r) , search(i+1, l , r+cur)
+            return l1 or l2
+        return search(0 , 0 ,0 )</code></pre>
                 </div>
             </details>
         </section>
 
         <!-- LIS -->
-        <section class="glass-panel p-8 rounded-2xl opacity-80">
-            <h2 class="text-2xl font-bold mb-4 text-gray-400">4. Longest Increasing Subsequence</h2>
-            <p class="text-gray-400 mb-6">Find the length of the longest strictly increasing subsequence.</p>
+        <section class="glass-panel p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-cyan-400">4. Longest Increasing Subsequence</h2>
+            <p class="text-gray-400 mb-6">Find the length of the longest strictly increasing subsequence in an array.</p>
+            
+            <div class="hack-box p-4 rounded-lg mb-6">
+                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Delulu's Memo Hack 🧠</span>
+                <p class="text-sm text-gray-300 mt-1">Compare with Prev: At each element, if it's greater than the previous included element, you can include it (+1) or skip it. If not, you must skip it. State: (current_index, value_of_prev).</p>
+            </div>
+
             <details class="group">
-                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Solution</summary>
+                <summary class="cursor-pointer text-sm text-gray-500 group-open:text-cyan-500">View Raja's Implementation</summary>
                 <div class="mt-4">
-                    <pre><code># Solution Archive</code></pre>
+                    <pre><code>from functools import lru_cache
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        l = len(nums)
+        @lru_cache(None)
+        def search(n , prev):
+            if n >= l:
+                return 0
+            cur = nums[n]
+            res = 0
+            if cur > prev:
+                res = search(n+1, cur) + 1
+            res = max(search(n+1, prev), res)
+            return res
+        return search(0, float("-inf"))</code></pre>
                 </div>
             </details>
         </section>
