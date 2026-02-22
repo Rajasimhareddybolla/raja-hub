@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delulu Notes | Advanced Workspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tiptap-editor@latest/dist/index.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { background-color: #ffffff; color: #37352f; font-family: 'Inter', sans-serif; }
+        .dark-mode { background-color: #191919; color: #ffffff; }
+        
+        .sidebar { width: 240px; background: #fbfbfa; border-right: 1px solid #edece9; }
+        .dark-mode .sidebar { background: #202020; border-right: 1px solid #2f2f20; }
+        
+        .editor-container { max-width: 800px; margin: 0 auto; padding: 80px 40px; }
+        
+        .command-menu { 
+            position: absolute; background: white; border: 1px solid #edece9; 
+            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 100; width: 200px; padding: 8px;
+        }
+        .dark-mode .command-menu { background: #252525; border-color: #3f3f3f; color: white; }
+        
+        .slash-item { padding: 8px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .slash-item:hover { background: #f1f1f0; }
+        .dark-mode .slash-item:hover { background: #2f2f2f; }
+
+        [contenteditable]:focus { outline: none; }
+        
+        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .code-block { background: #f7f6f3; padding: 1.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; margin: 1rem 0; position: relative; }
+        .dark-mode .code-block { background: #2f2f2f; }
+    </style>
+</head>
+<body class="flex min-h-screen dark-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar hidden lg:flex flex-col h-screen sticky top-0 p-4">
+        <div class="flex items-center gap-2 mb-8 px-2">
+            <div class="w-6 h-6 bg-purple-500 rounded flex items-center justify-center text-[10px] text-white">D</div>
+            <span class="font-semibold text-sm">Delulu Workspace</span>
+        </div>
+        
+        <nav class="space-y-1">
+            <div class="text-[10px] text-gray-500 uppercase px-2 mb-2 font-bold tracking-wider">Pages</div>
+            <a href="manifest.html" class="flex items-center gap-2 p-2 rounded hover:bg-white/5 text-sm transition">
+                <i class="fas fa-scroll w-4"></i> Manifest
+            </a>
+            <div class="flex items-center justify-between p-2 rounded bg-purple-500/10 text-purple-400 text-sm">
+                <span class="flex items-center gap-2"><i class="fas fa-file-code w-4"></i> DSA Mastery</span>
+                <i class="fas fa-star text-[10px]"></i>
+            </div>
+            <a href="heart.html" class="flex items-center gap-2 p-2 rounded hover:bg-white/5 text-sm transition text-gray-400">
+                <i class="fas fa-heart w-4"></i> Heart Stream
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Editor -->
+    <main class="flex-1 overflow-y-auto">
+        <div class="editor-container">
+            <div id="editor" contenteditable="true">
+                <h1 id="title">Advanced DSA Mastery Notes</h1>
+                <p class="text-gray-500 mb-8 italic">Press '/' for commands...</p>
+                
+                <div class="space-y-6">
+                    <h2 class="text-xl font-bold border-b border-gray-800 pb-2">1. Longest Palindromic Substring</h2>
+                    <p>Core technique: <strong>Expand Around Center</strong>. We treat each character (and each gap between characters) as a potential center.</p>
+                    
+                    <div class="code-block group">
+                        <div class="text-[10px] text-gray-500 mb-2 mono">// Python Implementation</div>
+                        <pre><code>class Solution(object):
+    def longestPalindrome(self, s):
+        if not s: return ""
+        start = end = 0
+        def expand(left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left, right = left - 1, right + 1
+            return right - left - 1 
+        for i in range(len(s)):
+            l1, l2 = expand(i, i), expand(i, i + 1)
+            max_len = max(l1, l2)
+            if max_len > end - start:
+                start = i - (max_len - 1) // 2
+                end = i + max_len // 2
+        return s[start:end + 1]</code></pre>
+                    </div>
+
+                    <h2 class="text-xl font-bold border-b border-gray-800 pb-2 mt-12">2. Dynamic Programming Blueprints</h2>
+                    <p class="text-gray-400">Remember the 3-step DP strategy:</p>
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li>Define State (e.g., dp[i] is the result at index i)</li>
+                        <li>Identify Recurrence Relation</li>
+                        <li>Determine Base Cases</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Slash Command Menu (Hidden by default) -->
+    <div id="slash-menu" class="command-menu hidden">
+        <div class="slash-item"><i class="fas fa-heading text-blue-400"></i> Heading 1</div>
+        <div class="slash-item"><i class="fas fa-code text-purple-400"></i> Code Block</div>
+        <div class="slash-item"><i class="fas fa-check-square text-green-400"></i> Todo List</div>
+        <div class="slash-item"><i class="fas fa-image text-orange-400"></i> Upload Media</div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const menu = document.getElementById('slash-menu');
+
+        editor.addEventListener('keyup', (e) => {
+            if (e.key === '/') {
+                const selection = window.getSelection();
+                const range = selection.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
+                
+                menu.style.top = `${rect.bottom + window.scrollY}px`;
+                menu.style.left = `${rect.left + window.scrollX}px`;
+                menu.classList.remove('hidden');
+            } else if (e.key === 'Escape') {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Hide menu on click outside
+        document.addEventListener('mousedown', (e) => {
+            if (!menu.contains(e.target)) menu.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
