@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raja Hub | Manifest & Execution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background-color: #050505; color: #e0d7f0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(168, 85, 247, 0.1); backdrop-filter: blur(10px); }
+        .glow-text { text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="min-h-screen p-4 lg:p-12">
+    <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Manifest & Priorities (Main Frame) -->
+        <div class="lg:col-span-8 space-y-8">
+            <header class="flex justify-between items-end mb-12">
+                <div>
+                    <h1 class="text-5xl font-bold tracking-tighter text-white glow-text">MANIFEST <span class="text-purple-500">&</span> EXECUTION</h1>
+                    <p class="text-gray-500 mt-2 mono uppercase text-xs tracking-widest">Protocol: High-Performance Growth</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-purple-400 font-bold text-xl serif">Feb 22, 2026</div>
+                    <a href="index.html" class="text-xs text-gray-600 hover:text-purple-400 transition mono uppercase">/ RETURN_TO_HUB</a>
+                </div>
+            </header>
+
+            <!-- Manifest Section -->
+            <section class="glass p-8 rounded-3xl border-l-4 border-purple-500">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-mountain text-purple-500"></i> THE NORTH STAR
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-4 text-lg">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Secure a Tier-1 Engineering Internship.
+                    </li>
+                    <li class="flex items-center gap-4 text-lg">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        High-Paying Career Placement (Senior SWE Track).
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Daily Sprint -->
+            <section class="glass p-8 rounded-3xl relative">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-list-check text-cyan-400"></i> DAILY EXECUTION STACK
+                    </h2>
+                    <button class="text-xs bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition mono">ADD_TASK</button>
+                </div>
+                
+                <div class="space-y-4" id="task-list">
+                    <!-- Task Item -->
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 group hover:border-purple-500/30 transition">
+                        <div class="cursor-move text-gray-700 group-hover:text-purple-500"><i class="fas fa-grip-vertical"></i></div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-gray-800 bg-black text-purple-500 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="text-white font-semibold">ML PYQ Mastery (Units 4 & 5)</div>
+                            <div class="text-xs text-gray-500">Focus on deep concept check.</div>
+                        </div>
+                        <a href="assets/dsa-notes.md" class="text-xs text-purple-400 hover:underline">Notes <i class="fas fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                    <!-- More tasks... -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Right: Analytics & History (Side Frame) -->
+        <div class="lg:col-span-4 space-y-8">
+            <!-- Velocity Graph -->
+            <section class="glass p-8 rounded-3xl">
+                <h3 class="text-sm font-bold mb-6 mono uppercase text-gray-500 tracking-tighter">Performance Velocity</h3>
+                <canvas id="velocityChart" height="200"></canvas>
+            </section>
+
+            <!-- Collapsible History -->
+            <section class="glass p-8 rounded-3xl">
+                <button onclick="document.getElementById('history-content').classList.toggle('hidden')" class="w-full flex justify-between items-center group">
+                    <h3 class="text-sm font-bold mono uppercase text-gray-500 tracking-tighter">Execution History</h3>
+                    <i class="fas fa-chevron-down text-gray-700 group-hover:text-purple-500 transition"></i>
+                </button>
+                <div id="history-content" class="mt-6 space-y-4 hidden">
+                    <div class="p-3 border-l border-white/10">
+                        <div class="text-[10px] text-gray-600">Feb 21, 2026</div>
+                        <div class="text-xs">95% Success • Mioo Latency Slashed</div>
+                    </div>
+                    <div class="p-3 border-l border-white/10">
+                        <div class="text-[10px] text-gray-600">Feb 20, 2026</div>
+                        <div class="text-xs">Dual Exams Conquered</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Links -->
+            <section class="glass p-8 rounded-3xl">
+                <h3 class="text-sm font-bold mb-4 mono uppercase text-gray-500">Resource Integration</h3>
+                <div class="space-y-3">
+                    <a href="#" class="flex justify-between items-center p-3 rounded-xl bg-purple-500/5 border border-purple-500/10 hover:border-purple-500/40 transition">
+                        <span class="text-sm">Notion Advanced Notes</span>
+                        <i class="fas fa-external-link-alt text-xs opacity-50"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('velocityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 16', 'Feb 17', 'Feb 18', 'Feb 19', 'Feb 20', 'Feb 21', 'Feb 22'],
+                datasets: [{
+                    label: 'Velocity',
+                    data: [65, 80, 80, 85, 95, 95, 0],
+                    borderColor: '#a855f7',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(168, 85, 247, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { display: false, max: 100 },
+                    x: { ticks: { color: '#444', font: { size: 10 } }, grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
