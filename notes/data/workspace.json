@@ -1,0 +1,39 @@
+{
+  "activePage": "welcome",
+  "pages": {
+    "welcome": {
+      "id": "welcome",
+      "title": "Welcome to Delulu OS",
+      "icon": "home",
+      "blocks": [
+        { "id": "b1", "type": "h1", "content": "Welcome to Delulu Notes OS v3" },
+        { "id": "b2", "type": "text", "content": "This is a world-class, industrial-grade engineering workspace. Built for high-performance architects." },
+        { "id": "b3", "type": "callout", "content": "Pro Tip: Type `/` to see the command menu.", "variant": "info" },
+        { "id": "b4", "type": "h2", "content": "Core Features" },
+        { "id": "b5", "type": "checkbox", "content": "Block-based editing", "checked": true },
+        { "id": "b6", "type": "checkbox", "content": "Markdown support", "checked": true },
+        { "id": "b7", "type": "checkbox", "content": "LaTeX Math Rendering", "checked": false },
+        { "id": "b8", "type": "code", "content": "console.log('Delulu OS Initialized');", "language": "javascript" }
+      ]
+    },
+    "dsa": {
+      "id": "dsa",
+      "title": "DSA Mastery",
+      "icon": "code-2",
+      "blocks": [
+        { "id": "d1", "type": "h1", "content": "Data Structures & Algorithms" }
+      ]
+    }
+  },
+  "sidebar": [
+    { "id": "welcome", "title": "Home", "icon": "home" },
+    { 
+      "id": "folder-academics", 
+      "title": "Academics", 
+      "type": "folder",
+      "children": [
+        { "id": "dsa", "title": "DSA Mastery", "icon": "code-2" }
+      ]
+    }
+  ]
+}

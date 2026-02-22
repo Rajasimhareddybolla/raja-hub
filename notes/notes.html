@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delulu Notes OS | Raja-Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <div id="sidebar-header">
+            <h1 style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--accent-cyan);">Delulu Notes OS</h1>
+            <div id="sidebar-nav">
+                <div class="slash-item"><i class="fas fa-folder-open"></i> Pages</div>
+                <div class="slash-item"><i class="fas fa-search"></i> Search</div>
+                <div class="slash-item"><i class="fas fa-clock"></i> Pomodoro</div>
+                <div class="slash-item"><i class="fas fa-code"></i> LeetCode</div>
+            </div>
+            <div id="nested-pages" style="margin-top: 1.5rem; padding-left: 0.5rem; font-size: 0.9rem;">
+                <!-- Dynamically populated page hierarchy -->
+                <div class="slash-item">[[WikiIndex]]</div>
+                <div class="slash-item">[[RajaHub-Manual]]</div>
+            </div>
+        </div>
+    </div>
+
+    <main id="main-editor" contenteditable="false">
+        <header id="page-header" style="margin-bottom: 2rem;">
+            <div id="breadcrumbs" style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem;">
+                root / notes / <span style="color: var(--accent-pink);">index.html</span>
+            </div>
+            <h1 id="page-title" contenteditable="true">Delulu Notes OS</h1>
+        </header>
+
+        <section id="editor-canvas">
+            <!-- Block instances go here -->
+            <div class="block" data-type="text">
+                <span class="block-handle"><i class="fas fa-grip-vertical"></i></span>
+                <div class="block-content" contenteditable="true" placeholder="Type '/' for commands or [[ for wikilinks...">Welcome to the Delulu Notes OS. Engineering-first notes for the Raja-Hub environment.</div>
+            </div>
+            <div class="block" data-type="heading-1">
+                <span class="block-handle"><i class="fas fa-grip-vertical"></i></span>
+                <h2 contenteditable="true">Core Concepts</h2>
+            </div>
+        </section>
+
+        <!-- Slash Menu -->
+        <div id="slash-menu">
+            <div class="slash-item" data-command="h1"><i class="fas fa-heading"></i> Heading 1</div>
+            <div class="slash-item" data-command="h2"><i class="fas fa-heading" style="font-size: 0.8rem;"></i> Heading 2</div>
+            <div class="slash-item" data-command="code"><i class="fas fa-code"></i> Code Block</div>
+            <div class="slash-item" data-command="todo"><i class="fas fa-check-square"></i> To-do List</div>
+            <div class="slash-item" data-command="latex"><i class="fas fa-calculator"></i> LaTeX Math</div>
+            <div class="slash-item" data-command="leetcode"><i class="fab fa-battle-net"></i> Fetch LeetCode</div>
+        </div>
+    </main>
+
+    <!-- UI Overlay elements -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+
+    <script src="scripts/editor.js"></script>
+</body>
+</html>
